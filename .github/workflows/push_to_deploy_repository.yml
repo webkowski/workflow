@@ -24,7 +24,7 @@ jobs:
       # Step 3: Add the target repository as a remote
       - name: Add target repository
         run: |
-          git remote add target https://${{ secrets.WORKFLOW_DEPLOY_TOKEN }}@github.com/ozrabal/workflow-deployment.git
+          git remote add target https://ozrabal:${{ secrets.WORKFLOW_DEPLOY_TOKEN }}@github.com/ozrabal/workflow-deployment.git
           git fetch target
 
       # Step 4: Push changes to the target repository
