@@ -10,7 +10,7 @@ jobs:
   push-to-other-repo:
     # if: github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'main'
     runs-on: ubuntu-latest
-
+    environment: deployment
     steps:
       - name: Checkout current repository
         uses: actions/checkout@v3
@@ -22,7 +22,7 @@ jobs:
 
       - name: Add target repository
         run: |
-          git remote add target https://ozrabal:${{ secrets.WORKFLOW_DEPLOY_TOKEN }}@github.com/ozrabal/workflow-deployment.git
+          git remote add target https://ozrabal:${{ secrets.DEPLOYMENT_TOKEN }}@github.com/ozrabal/workflow-deployment.git
           git fetch target
 
       - name: Push to target repository
