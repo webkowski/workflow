@@ -27,7 +27,7 @@ jobs:
 
       - name: Push to target repository
         run: |
-          git push target production
+          git push target main
 
       - name: Confirm changes pushed
         run: echo "Changes pushed to target repository main branch successfully"
