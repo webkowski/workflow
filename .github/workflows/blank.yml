@@ -1,4 +1,4 @@
-name: Push Changes to Another Repository
+name: Push Changes to Another Repository 2
 
 on:
   workflow_dispatch:
@@ -17,8 +17,8 @@ jobs:
 
       - name: Set up Git
         run: |
-          git config user.name "${{ github.actor }}"
-          git config user.email "${{ github.actor }}@users.noreply.github.com"
+          git config user.name "ozrabal"
+          git config user.email "ozrabal@users.noreply.github.com"
 
       - name: Add target repository
         run: |
