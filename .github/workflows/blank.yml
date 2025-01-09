@@ -18,7 +18,7 @@ jobs:
       - name: Set up Git
         run: |
           git config user.name "ozrabal"
-          git config user.email "ozrabal@users.noreply.github.com"
+          git config user.email "ozrabal@gmail.com"
 
       - name: Add target repository
         run: |
