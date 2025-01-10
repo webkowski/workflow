@@ -1,0 +1,30 @@
+name: Push Changes to Another Repository 2
+
+on:
+  workflow_dispatch:
+  pull_request:
+    types:
+      - closed
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment: deployment
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        ref: ${{ github.head_ref }}
+        fetch-depth: 0
+        token: ${{ secrets.WORKFLOW_FG }}
+    # - name: Commit files
+    #   run: |
+    #     git config --local user.email "test@test.com"
+    #     git config --local user.name "Test"
+    #     git commit -a -m "Add changes"
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.WORKFLOW_FG }}
+        repository: ozrabal/workflow-deployment
+        force: true
+
