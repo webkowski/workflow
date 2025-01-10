@@ -24,7 +24,7 @@ jobs:
 
       - name: Add target repository
         run: |
-          git remote add target https://github.com/ozrabal/workflow-deployment.git
+          git remote add target https://${{ secrets.WORKFLOW_FG }}@github.com/ozrabal/workflow-deployment
           git fetch target
 
       - name: Push to target repository
