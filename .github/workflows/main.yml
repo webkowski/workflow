@@ -7,29 +7,23 @@ on:
       - closed
 
 jobs:
-  push-to-other-repo:
-    # if: github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'main'
+  build:
     runs-on: ubuntu-latest
-    environment: deployment
-    permissions:
-      contents: write
     steps:
-      - name: Checkout current repository
-        uses: actions/checkout@v3
+    - uses: actions/checkout@v4
+      with:
+        ref: ${{ github.head_ref }}
+        fetch-depth: 0
+        token: ${{ secrets.WORKFLOW_FG }}
+    - name: Commit files
+      run: |
+        git config --local user.email "test@test.com"
+        git config --local user.name "Test"
+        git commit -a -m "Add changes"
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.WORKFLOW_FG }}
+        repository: ozrabal/workflow-deployment
+        force: true
 
-      - name: Set up Git
-        run: |
-          git config user.name "ozrabal"
-          git config user.email "ozrabal@gmail.com"
-
-      - name: Add target repository
-        run: |
-          git remote add target https://${{ secrets.WORKFLOW_FG }}@github.com/ozrabal/workflow-deployment.git
-          git fetch target
-
-      - name: Push to target repository
-        run: |
-          git push target main
-
-      - name: Confirm changes pushed
-        run: echo "Changes pushed to target repository main branch successfully"
