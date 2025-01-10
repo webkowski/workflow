@@ -16,11 +16,11 @@ jobs:
         ref: ${{ github.head_ref }}
         fetch-depth: 0
         token: ${{ secrets.WORKFLOW_FG }}
-    - name: Commit files
-      run: |
-        git config --local user.email "test@test.com"
-        git config --local user.name "Test"
-        git commit -a -m "Add changes"
+    # - name: Commit files
+    #   run: |
+    #     git config --local user.email "test@test.com"
+    #     git config --local user.name "Test"
+    #     git commit -a -m "Add changes"
     - name: Push changes
       uses: ad-m/github-push-action@master
       with:
