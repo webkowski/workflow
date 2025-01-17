@@ -9,9 +9,9 @@ export default async function ProtectedPage() {
   } = await supabase.auth.getUser();
 
   return (
-    <div className="flex-1 w-full flex flex-col gap-12">
-      <div className="flex flex-col gap-2 items-start">
-        <pre className="text-xs font-mono p-3 rounded border max-h-64 overflow-auto">
+    <div className="flex w-full flex-1 flex-col gap-12">
+      <div className="flex flex-col items-start gap-2">
+        <pre className="max-h-64 overflow-auto rounded border p-3 font-mono text-xs">
           {JSON.stringify(user, null, 2)}
         </pre>
       </div>

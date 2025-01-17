@@ -1,0 +1,13 @@
+post-merge:
+  commands:
+    update:
+      run: yarn
+pre-commit:
+  parallel: true
+  commands:
+    app-linter:
+      run: yarn lint;
+    app-check-types:
+      run: yarn check-types;
+    #app-style-lint:
+    #  run: yarn style-lint;

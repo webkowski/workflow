@@ -1,7 +1,7 @@
-import type { Metadata } from "next";
 import "./globals.css";
 import SignOutModule from "@/components/modules/signOut";
 import { createClient } from "@/utils/supabase/server";
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Workflow",
@@ -18,13 +18,10 @@ export default async function RootLayout({
   const {
     data: { user },
   } = await supabase.auth.getUser();
-  
-  
+
   return (
     <html lang="en">
-      <body
-        className="antialiased text-white bg-black"
-      >
+      <body className="bg-black text-white antialiased">
         {user && <SignOutModule />}
         {children}
       </body>

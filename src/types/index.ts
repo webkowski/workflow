@@ -7,6 +7,6 @@ export type CookieParams = {
     expires?: Date;
     httpOnly?: boolean;
     secure?: boolean;
-    sameSite?: 'strict' | 'lax' | 'none';
+    sameSite?: "strict" | "lax" | "none";
   };
 };
