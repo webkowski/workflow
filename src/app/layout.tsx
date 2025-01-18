@@ -1,6 +1,8 @@
+import { ThemeProvider } from "@/components/base/themeProvider";
 import "./globals.css";
 import SignOutModule from "@/components/modules/signOut";
 import { createClient } from "@/utils/supabase/server";
+import { ModeToggle } from "@/components/modules/modeToggle";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -20,10 +22,21 @@ export default async function RootLayout({
   } = await supabase.auth.getUser();
 
   return (
-    <html lang="en">
-      <body className="bg-black text-white antialiased">
-        {user && <SignOutModule />}
-        {children}
+    <html
+      suppressHydrationWarning
+      lang="en"
+    >
+      <body>
+        <ThemeProvider
+          disableTransitionOnChange
+          enableSystem
+          attribute="class"
+          defaultTheme="system"
+        >
+          <ModeToggle />
+          {user && <SignOutModule />}
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );
