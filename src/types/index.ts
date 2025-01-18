@@ -10,3 +10,7 @@ export type CookieParams = {
     sameSite?: "strict" | "lax" | "none";
   };
 };
+
+export type PropsWithClassName = {
+  className?: string;
+};
