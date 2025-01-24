@@ -108,3 +108,21 @@ export const signOutAction = async () => {
   await supabase.auth.signOut();
   return redirect("/sign-in");
 };
+
+export const subscribeAction = async (/*formData: FormData*/) => {
+  //const email = formData.get("email") as string;
+  // const supabase = await createClient();
+
+  // if (!email) {
+  //   return encodedRedirect("error", "/sign-up", "Email is required");
+  // }
+
+  // const response = await supabase.from("subscribers").insert([{ email }]);
+
+  // if (response.error) {
+  //   console.error("error", response);
+  //   return encodedRedirect("error", "/sign-up", "Could not subscribe");
+  // }
+
+  return encodedRedirect("success", "/sign-up", "Subscribed successfully");
+};
