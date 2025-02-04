@@ -4,6 +4,8 @@ import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { encodedRedirect } from "@/utils/encodedRedirect";
 import { createClient } from "@/utils/supabase/server";
+import { db } from "@/db";
+import { projects } from "@/db/schema";
 
 export const signUpAction = async (formData: FormData) => {
   const email = formData.get("email")?.toString();
@@ -125,4 +127,8 @@ export const subscribeAction = async (/*formData: FormData*/) => {
   // }
 
   return encodedRedirect("success", "/sign-up", "Subscribed successfully");
+};
+
+export const addProjectAction = async () => {
+  await db.insert(projects).values({ name: "test" });
 };
