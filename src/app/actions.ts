@@ -2,6 +2,7 @@
 
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
+import { Resend } from "resend";
 import { encodedRedirect } from "@/utils/encodedRedirect";
 import { createClient } from "@/utils/supabase/server";
 import { db } from "@/db";
@@ -111,21 +112,16 @@ export const signOutAction = async () => {
   return redirect("/sign-in");
 };
 
-export const subscribeAction = async (/*formData: FormData*/) => {
-  //const email = formData.get("email") as string;
-  // const supabase = await createClient();
+export const subscribeAction = async (formData: FormData) => {
+  const email = formData.get("email") as string;
+  const resend = new Resend(process.env.RESEND_API_KEY!);
 
-  // if (!email) {
-  //   return encodedRedirect("error", "/sign-up", "Email is required");
-  // }
-
-  // const response = await supabase.from("subscribers").insert([{ email }]);
-
-  // if (response.error) {
-  //   console.error("error", response);
-  //   return encodedRedirect("error", "/sign-up", "Could not subscribe");
-  // }
-
+  await resend.emails.send({
+    from: "Acme <onboarding@resend.dev>",
+    to: ["delivered@resend.dev"],
+    subject: "Join our Early Access Beta Program",
+    html: `${email} has signed up for our Early Access Beta Program`,
+  });
   return encodedRedirect("success", "/sign-up", "Subscribed successfully");
 };
 
