@@ -126,5 +126,5 @@ export const subscribeAction = async (formData: FormData) => {
 };
 
 export const addProjectAction = async () => {
-  await db.insert(projects).values({ name: "test" });
+  await db.insert(projects).values({ name: "test", description: "test description" });
 };

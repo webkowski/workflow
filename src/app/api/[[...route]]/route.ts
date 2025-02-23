@@ -6,6 +6,8 @@ const router = new Hono().basePath("/api");
 
 router.route("/estimator/analyze", analyze);
 
+export const maxDuration = 30;
+
 export const GET = handle(router);
 export const POST = handle(router);
 export const PATCH = handle(router);

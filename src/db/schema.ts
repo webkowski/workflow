@@ -1,16 +1,17 @@
-import { pgTable, bigint, timestamp, text } from "drizzle-orm/pg-core";
-// import { sql } from "drizzle-orm";
+import { pgTable, timestamp, text, serial } from "drizzle-orm/pg-core";
 
 export const projects = pgTable("projects", {
-  // You can use { mode: "bigint" } if numbers are exceeding js number limitations
-  id: bigint({ mode: "number" }).primaryKey().generatedByDefaultAsIdentity({
-    name: "projects_id_seq",
-    startWith: 1,
-    increment: 1,
-    minValue: 1,
-    maxValue: 9223372036854775807,
-    cache: 1,
-  }),
+  id: serial().primaryKey().notNull(),
+  name: text().notNull(),
+  description: text(),
   createdAt: timestamp("created_at", { withTimezone: true, mode: "string" }).defaultNow().notNull(),
-  name: text(),
+  updatedAt: timestamp("updated_at", { withTimezone: true, mode: "string" }).defaultNow().notNull(),
+});
+
+export const prompts = pgTable("prompts", {
+  id: serial().primaryKey().notNull(),
+  name: text().notNull(),
+  prompt: text(),
+  createdAt: timestamp("created_at", { withTimezone: true, mode: "string" }).defaultNow().notNull(),
+  updatedAt: timestamp("updated_at", { withTimezone: true, mode: "string" }).defaultNow().notNull(),
 });
