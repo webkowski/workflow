@@ -29,6 +29,7 @@ const eslintConfig = [
       },
     },
     rules: {
+      "no-console": "error",
       "react/jsx-sort-props": [
         "error",
         {
