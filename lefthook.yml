@@ -6,7 +6,7 @@ pre-commit:
   parallel: true
   commands:
     app-linter:
-      run: yarn lint;
+      run: yarn eslint {staged_files};
     app-check-types:
       run: yarn check-types;
     #app-style-lint:
