@@ -4,7 +4,7 @@ import type { ProjectInsert } from "@/types/db";
 export const projectSchema = z
   .object({
     name: z.string().min(1),
-    description: z.string().optional(),
+    description: z.string().min(1),
     createdAt: z.string().datetime().optional(), // will be auto-set by DB
     updatedAt: z.string().datetime().optional(), // will be auto-set by DB
   })

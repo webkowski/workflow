@@ -14,7 +14,8 @@ export const validateBody = <T extends z.ZodType>(schema: T) => {
 
     const result = schema.safeParse(body);
     if (!result.success) {
-      throw new AppError("Validation failed", 400);
+      const formattedErrors = result.error.flatten();
+      throw new AppError("Validation failed", 400, { ...formattedErrors });
     }
 
     return result.data as z.infer<T>;
