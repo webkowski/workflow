@@ -7,7 +7,7 @@ export default function EarlyAccess({ onSubmit }: { onSubmit: (formData: FormDat
       <div className="container grid items-center gap-4 px-4 md:px-6">
         <div className="space-y-3 text-center">
           <h2 className="text-3xl font-bold tracking-tighter md:text-4xl/tight">Join our Early Access Beta Program</h2>
-          <p className="mx-auto max-w-[600px] text-gray-500 dark:text-gray-400 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+          <p className="mx-auto max-w-[600px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
             Be the first to experience our new features and improvements. <br />
             Help us build a better product with your feedback.
           </p>

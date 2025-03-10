@@ -27,6 +27,7 @@ export const signUpAction = async (formData: FormData) => {
   });
 
   if (error) {
+    // eslint-disable-next-line no-console
     console.error(error.code + " " + error.message);
     return encodedRedirect("error", "/sign-up", error.message);
   } else {
@@ -70,6 +71,7 @@ export const forgotPasswordAction = async (formData: FormData) => {
   });
 
   if (error) {
+    // eslint-disable-next-line no-console
     console.error(error.message);
     return encodedRedirect("error", "/forgot-password", "Could not reset password");
   }

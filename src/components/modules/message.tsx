@@ -33,10 +33,10 @@ export function Message({ message }: { message: MessageProps }) {
   return (
     <div className="flex w-full max-w-md flex-col gap-2 text-sm">
       {"success" in message && (
-        <div className="border-l-2 border-foreground px-4 text-foreground">{message.success}</div>
+        <div className="border-foreground text-foreground border-l-2 px-4">{message.success}</div>
       )}
       {"error" in message && <div className="border-l-2 border-red-600 px-4">{message.error}</div>}
-      {"info" in message && <div className="border-l-2 px-4 text-foreground">{message.info}</div>}
+      {"info" in message && <div className="text-foreground border-l-2 px-4">{message.info}</div>}
     </div>
   );
 }

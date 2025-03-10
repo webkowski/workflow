@@ -15,6 +15,7 @@ export const createClient = async () => {
             cookieStore.set(name, value, options);
           });
         } catch (error) {
+          // eslint-disable-next-line no-console
           console.error(error);
           // The `set` method was called from a Server Component.
           // This can be ignored if you have middleware refreshing

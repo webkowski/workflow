@@ -33,7 +33,7 @@ export default async function RootLayout({
           attribute="class"
           defaultTheme="system"
         >
-          <div className="absolute right-0 top-0 p-4">
+          <div className="absolute top-0 right-0 p-4">
             <ModeToggle />
           </div>
           {user && <SignOutModule />}

@@ -15,7 +15,7 @@ export default function Chat() {
       className="flex w-full max-w-4xl flex-col gap-4"
       onSubmit={handleSubmit}
     >
-      <div className="flex  gap-2">
+      <div className="flex gap-2">
         <Input
           name="prompt"
           value={input}
