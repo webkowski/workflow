@@ -1,5 +1,5 @@
 import { resetPasswordAction } from "@/app/actions";
-import Button from "@/components/base/button";
+import { Button } from "@/components/ui/button";
 
 export default async function ResetPassword() {
   return (
