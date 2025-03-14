@@ -5,7 +5,7 @@ import { cn } from "@/utils/ui";
 const Card = ({ className, ...props }: React.ComponentProps<"div">) => (
   <div
     className={cn("bg-card text-card-foreground rounded-xl border shadow-sm", className)}
-    data-slot="Card"
+    data-slot="card"
     {...props}
   />
 );
@@ -13,7 +13,7 @@ const Card = ({ className, ...props }: React.ComponentProps<"div">) => (
 const CardHeader = ({ className, ...props }: React.ComponentProps<"div">) => (
   <div
     className={cn("flex flex-col space-y-1.5 p-6", className)}
-    data-slot="CardHeader"
+    data-slot="card-header"
     {...props}
   />
 );
@@ -21,7 +21,7 @@ const CardHeader = ({ className, ...props }: React.ComponentProps<"div">) => (
 const CardTitle = ({ className, ...props }: React.ComponentProps<"div">) => (
   <div
     className={cn("leading-none font-semibold tracking-tight", className)}
-    data-slot="CardTitle"
+    data-slot="card-title"
     {...props}
   />
 );
@@ -29,7 +29,7 @@ const CardTitle = ({ className, ...props }: React.ComponentProps<"div">) => (
 const CardDescription = ({ className, ...props }: React.ComponentProps<"div">) => (
   <div
     className={cn("text-muted-foreground text-sm", className)}
-    data-slot="CardDescription"
+    data-slot="card-description"
     {...props}
   />
 );
@@ -37,7 +37,7 @@ const CardDescription = ({ className, ...props }: React.ComponentProps<"div">) =
 const CardContent = ({ className, ...props }: React.ComponentProps<"div">) => (
   <div
     className={cn("p-6 pt-0", className)}
-    data-slot="CardContent"
+    data-slot="card-content"
     {...props}
   />
 );
@@ -45,7 +45,7 @@ const CardContent = ({ className, ...props }: React.ComponentProps<"div">) => (
 const CardFooter = ({ className, ...props }: React.ComponentProps<"div">) => (
   <div
     className={cn("flex items-center p-6 pt-0", className)}
-    data-slot="CardFooter"
+    data-slot="card-footer"
     {...props}
   />
 );

@@ -11,7 +11,7 @@ export type LabelProps = React.ComponentProps<typeof LabelPrimitive.Root> & Vari
 const Label = ({ className, ...props }: LabelProps) => (
   <LabelPrimitive.Root
     className={cn(labelVariants(), className)}
-    data-slot="Label"
+    data-slot="label"
     {...props}
   />
 );
