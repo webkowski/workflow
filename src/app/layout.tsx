@@ -1,8 +1,5 @@
 import { ThemeProvider } from "@/components/base/themeProvider";
 import "./globals.css";
-import SignOutModule from "@/components/modules/signOut";
-import { createClient } from "@/utils/supabase/server";
-import { ModeToggle } from "@/components/modules/modeToggle";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -10,17 +7,11 @@ export const metadata: Metadata = {
   description: "Workflow app",
 };
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const supabase = await createClient();
-
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
   return (
     <html
       suppressHydrationWarning
@@ -33,10 +24,6 @@ export default async function RootLayout({
           attribute="class"
           defaultTheme="system"
         >
-          <div className="absolute top-0 right-0 p-4">
-            <ModeToggle />
-          </div>
-          {user && <SignOutModule />}
           {children}
         </ThemeProvider>
       </body>

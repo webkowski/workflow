@@ -12,6 +12,7 @@ import {
   PieChart,
   Settings2,
   SquareTerminal,
+  Loader,
 } from "lucide-react";
 
 import { NavMain } from "@/components/nav-main";
@@ -19,6 +20,7 @@ import { NavProjects } from "@/components/nav-projects";
 import { NavUser } from "@/components/nav-user";
 import { TeamSwitcher } from "@/components/team-switcher";
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarRail } from "@/components/ui/sidebar";
+import useUser from "@/hooks/use-user";
 
 // This is sample data.
 const data = {
@@ -151,6 +153,8 @@ const data = {
 };
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const { user, loading } = useUser();
+
   return (
     <Sidebar
       collapsible="icon"
@@ -164,7 +168,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <NavProjects projects={data.projects} />
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={data.user} />
+        {loading && <Loader />}
+        {user && <NavUser user={user} />}
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>

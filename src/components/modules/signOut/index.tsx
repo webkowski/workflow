@@ -1,6 +1,6 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
+import { LogOut } from "lucide-react";
 import { createClient } from "@/utils/supabase/client";
 
 export default function SignOutModule() {
@@ -9,5 +9,13 @@ export default function SignOutModule() {
     window.location.reload();
   };
 
-  return <Button onClick={signOut}>Sign out</Button>;
+  return (
+    <button
+      className="flex items-center gap-2"
+      onClick={signOut}
+    >
+      <LogOut />
+      Log out
+    </button>
+  );
 }

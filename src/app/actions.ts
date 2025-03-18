@@ -39,7 +39,9 @@ export const signUpAction = async (formData: FormData) => {
   }
 };
 
-export const signInAction = async (formData: FormData) => {
+export type SignInAction = (formData: FormData, redirectUrl: string) => Promise<void>;
+
+export const signInAction: SignInAction = async (formData, redirectUrl = "/") => {
   const email = formData.get("email") as string;
   const password = formData.get("password") as string;
   const supabase = await createClient();
@@ -53,7 +55,7 @@ export const signInAction = async (formData: FormData) => {
     return encodedRedirect("error", "/sign-in", error.message);
   }
 
-  return redirect("/");
+  return redirect(redirectUrl);
 };
 
 export const forgotPasswordAction = async (formData: FormData) => {

@@ -5,10 +5,13 @@ export const updateSession = async (request: NextRequest) => {
   // This `try/catch` block is only here for the interactive tutorial.
   // Feel free to remove once you have Supabase connected.
   try {
+    const headers = new Headers(request.headers);
+    headers.set("x-current-path", request.nextUrl.pathname);
+
     // Create an unmodified response
     let response = NextResponse.next({
       request: {
-        headers: request.headers,
+        headers,
       },
     });
 
@@ -33,16 +36,21 @@ export const updateSession = async (request: NextRequest) => {
 
     // This will refresh session if expired - required for Server Components
     // https://supabase.com/docs/guides/auth/server-side/nextjs
-    const user = await supabase.auth.getUser();
+    // const user =
+    await supabase.auth.getUser();
+    // console.log("user", user, request.nextUrl.pathname);
 
-    // protected routes
-    if (request.nextUrl.pathname.startsWith("/protected") && user.error) {
-      return NextResponse.redirect(new URL("/sign-in", request.url));
-    }
+    // if (!user || (user.error && !request.nextUrl.pathname !== "/sign-in")) {
+    //   return NextResponse.redirect(new URL("/sign-in", request.url));
+    // }
+    // // protected routes
+    // if (request.nextUrl.pathname.startsWith("/protected") && user.error) {
+    //   return NextResponse.redirect(new URL("/sign-in", request.url));
+    // }
 
-    if (request.nextUrl.pathname === "/" && user.error) {
-      return NextResponse.redirect(new URL("/protected", request.url));
-    }
+    // if (request.nextUrl.pathname === "/" && user.error) {
+    //   return NextResponse.redirect(new URL("/protected", request.url));
+    // }
 
     return response;
   } catch (e) {

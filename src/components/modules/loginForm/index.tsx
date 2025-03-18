@@ -1,16 +1,28 @@
+"use client";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { cn } from "@/utils/ui";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { type PropsWithClassName } from "@/types";
+import { type SignInAction } from "@/app/actions";
 
 export type LoginFormProps = PropsWithClassName & {
-  onSubmit?: (formData: FormData) => Promise<void>;
+  onSubmit?: SignInAction;
 };
 
 export function LoginForm({ className, onSubmit }: LoginFormProps) {
+  const searchParams = useSearchParams();
+  const redirect = searchParams.get("source") || "/";
+
+  const handleSubmit = (formData: FormData) => {
+    if (onSubmit) {
+      onSubmit(formData, redirect);
+    }
+  };
+
   return (
     <div className={cn("flex flex-col gap-6", className)}>
       <Card>
@@ -50,7 +62,7 @@ export function LoginForm({ className, onSubmit }: LoginFormProps) {
               </div>
               <Button
                 className="w-full"
-                formAction={onSubmit}
+                formAction={handleSubmit}
                 type="submit"
               >
                 Login

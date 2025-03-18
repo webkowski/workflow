@@ -1,8 +1,10 @@
 "use client";
 
-import { BadgeCheck, Bell, ChevronsUpDown, CreditCard, LogOut, Sparkles } from "lucide-react";
+import { BadgeCheck, Bell, ChevronsUpDown, CreditCard, Sparkles } from "lucide-react";
 
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import Link from "next/link";
+import { type User } from "@supabase/supabase-js";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -13,18 +15,11 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar } from "@/components/ui/sidebar";
+import SignOutModule from "./modules/signOut";
 
-export function NavUser({
-  user,
-}: {
-  user: {
-    name: string;
-    email: string;
-    avatar: string;
-  };
-}) {
+export function NavUser({ user }: { user: User }) {
   const { isMobile } = useSidebar();
-
+  //
   return (
     <SidebarMenu>
       <SidebarMenuItem>
@@ -35,14 +30,13 @@ export function NavUser({
               size="lg"
             >
               <Avatar className="h-8 w-8 rounded-lg">
-                <AvatarImage
+                {/* <AvatarImage
                   alt={user.name}
                   src={user.avatar}
-                />
-                <AvatarFallback className="rounded-lg">CN</AvatarFallback>
+                /> */}
+                <AvatarFallback className="rounded-lg">{}</AvatarFallback>
               </Avatar>
               <div className="grid flex-1 text-left text-sm leading-tight">
-                <span className="truncate font-medium">{user.name}</span>
                 <span className="truncate text-xs">{user.email}</span>
               </div>
               <ChevronsUpDown className="ml-auto size-4" />
@@ -57,14 +51,13 @@ export function NavUser({
             <DropdownMenuLabel className="p-0 font-normal">
               <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
                 <Avatar className="h-8 w-8 rounded-lg">
-                  <AvatarImage
+                  {/* <AvatarImage
                     alt={user.name}
                     src={user.avatar}
-                  />
+                  /> */}
                   <AvatarFallback className="rounded-lg">CN</AvatarFallback>
                 </Avatar>
                 <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-medium">{user.name}</span>
                   <span className="truncate text-xs">{user.email}</span>
                 </div>
               </div>
@@ -78,10 +71,12 @@ export function NavUser({
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
-              <DropdownMenuItem>
-                <BadgeCheck />
-                Account
-              </DropdownMenuItem>
+              <Link href="/user">
+                <DropdownMenuItem>
+                  <BadgeCheck />
+                  Account
+                </DropdownMenuItem>
+              </Link>
               <DropdownMenuItem>
                 <CreditCard />
                 Billing
@@ -93,8 +88,7 @@ export function NavUser({
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuItem>
-              <LogOut />
-              Log out
+              <SignOutModule />
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
