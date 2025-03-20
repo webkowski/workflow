@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { createClient } from "@/utils/supabase/server";
 import { Button } from "@/components/ui/button";
+import SignOutModule from "@/components/modules/signOut";
 
 export default async function Home() {
   const supabase = await createClient();
@@ -16,9 +17,12 @@ export default async function Home() {
         {user && (
           <div className="flex flex-col gap-4">
             <p>Welcome back, {user.email}!</p>
-            <Link href="dashboard">
-              <Button>Go to Dashboard</Button>
-            </Link>
+            <div className="flex gap-4">
+              <Link href="dashboard">
+                <Button>Go to Dashboard</Button>
+              </Link>
+              <SignOutModule />
+            </div>
           </div>
         )}
       </main>
