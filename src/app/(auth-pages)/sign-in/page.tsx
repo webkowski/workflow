@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { signInAction } from "@/app/actions";
 import PageWrapper from "@/components/base/pageWrapper";
 import { LoginForm } from "@/components/modules/loginForm";
@@ -5,7 +6,9 @@ import { LoginForm } from "@/components/modules/loginForm";
 export default async function Login() {
   return (
     <PageWrapper variant="centered">
-      <LoginForm onSubmit={signInAction} />
+      <Suspense fallback="Loading...">
+        <LoginForm onSubmit={signInAction} />
+      </Suspense>
     </PageWrapper>
   );
 }
