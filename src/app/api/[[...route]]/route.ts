@@ -7,6 +7,7 @@ const router = new Hono().basePath("/api");
 
 router.route("/estimator/analyze", analyze);
 router.route("/project/add", project.add);
+router.route("/project/validate", project.validate);
 
 export const maxDuration = 30;
 
